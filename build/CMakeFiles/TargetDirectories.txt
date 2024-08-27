@@ -1,0 +1,3 @@
+/home/kostyan/Рабочий стол/job/build/CMakeFiles/job.dir
+/home/kostyan/Рабочий стол/job/build/CMakeFiles/edit_cache.dir
+/home/kostyan/Рабочий стол/job/build/CMakeFiles/rebuild_cache.dir

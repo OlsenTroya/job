@@ -1,0 +1,17 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <set>
+#include <algorithm>
+
+std::vector<std::string> GetPackagesDifference(const std::vector<std::string>& packages1, const std::vector<std::string>& packages2) {
+	std::set<std::string> difference;
+	auto similarPackege;
+	for (const auto& package : packages1) {
+		if(similarPackege != find(packages2.begin(), packeges2.end(), packege)){
+			difference.push_back(package);
+		}
+		
+	}
+return difference;
+} 

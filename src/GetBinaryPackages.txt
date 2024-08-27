@@ -1,0 +1,25 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <nlohmann/json.hpp>
+#include <curl/curl.h>
+
+std::vector<std::string> GetBinaryPackages(const std::string& branch) { 
+ CURL* curl = curl_easy_init();
+std::string url = "https://rdb.altlinux.org/api/export/branch_binary_packages/" + branch;
+curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+std::string response;
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, [](char* ptr, size_t size, size_t nmemb, void* userdata) {
+        ((std::string*)userdata)->append(ptr, size * nmemb);
+        return size * nmemb;
+    }, &response);
+    curl_easy_perform(curl);
+
+	std::vector<std::string> packages;
+	nlohmann::json json = nlohmann::json::parse(response);
+    std::vector<std::string> binaryPackages;
+    for (const auto& package : json) {
+        binaryPackages.push_back(package.get<std::string>());
+    }
+return binaryPackages;
+}
